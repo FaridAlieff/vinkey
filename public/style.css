@@ -113,7 +113,7 @@ body {
 .logsList > div{ padding:8px 6px; border-bottom:1px solid rgba(255,255,255,0.02); }
 
 /* footer */
-.card-footer{ margin-top:14px; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:13px; }
+.card-footer{ margin-top:14px; display:flex; justify-content:space-between; align-items:center; color:#fff !important; font-size:17px !important; }
 
 /* ---------- "liquid droplet" buttons / touch feedback ---------- */
 /* small ripple using pseudo element */

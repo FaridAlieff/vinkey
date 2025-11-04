@@ -142,8 +142,8 @@ body {
 .visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); border:0; }
 .logo-glass {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 20px;
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -159,7 +159,7 @@ body {
   transform: scale(1.05);
 }
 .logo-glass img {
-  width: 80%;
+  width: 50%;
   height: auto;
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
 }

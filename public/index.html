@@ -9,42 +9,38 @@
 </head>
 <body>
   <main class="wrap">
-    <section class="card">
+    <section class="glass-card">
       <div class="header">
         <div class="logo">v</div>
         <div>
           <h1>Vinkey</h1>
-          <p class="muted">VIN əsaslı giriş kodu generatoru</p>
+          <p class="muted">VIN əsaslı kod generatoru — parolsuz</p>
         </div>
       </div>
 
-      <div id="app">
-          <div class="grid">
-            <div>
-              <label class="label">VIN / ID</label>
-              <input id="vinInput" placeholder="VIN daxil edin">
-              <div class="row">
-                <button id="genBtn">Generator</button>
-                <button id="logoutBtn" class="ghost">Çıxış</button>
-              </div>
+      <div id="app" class="content">
+        <div class="controls">
+          <label class="label">VIN / ID</label>
+          <input id="vinInput" placeholder="VIN daxil edin (məs: LVD123456789)">
 
-              <div id="result" class="result">Nəticə gözlənilir</div>
-
-              <div class="card small logs">
-                <div class="logsTitle">Son sorğular</div>
-                <div id="logsList">Yüklənir...</div>
-              </div>
-            </div>
-
-            <aside class="aside">
-              <h3>Haqqında</h3>
-              <p class="small muted">Bu sistem server vaxtından istifadə edir və nəticələri GitHub `logs.json`-a yazır. Parolları `passwords.json` faylında redaktə edə bilərsiniz.</p>
-              <div class="meta">Server vaxtı: <span id="serverTime">-</span></div>
-            </aside>
+          <div class="row">
+            <button id="genBtn">Generate</button>
+            <button id="clearBtn" class="ghost">Təmizlə</button>
           </div>
+
+          <div id="result" class="result">Nəticə gözlənilir</div>
         </div>
+
+        <aside class="aside">
+          <div class="info-card">
+            <h3>Son sorğular</h3>
+            <div id="logsList" class="logsList">Yüklənir...</div>
+            <div class="meta">Server vaxtı: <span id="serverTime">-</span></div>
+          </div>
+        </aside>
       </div>
     </section>
+    <footer class="footer">© Vinkey</footer>
   </main>
 
   <script src="/script.js"></script>

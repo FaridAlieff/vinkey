@@ -1,7 +1,5 @@
 const crypto = require('crypto');
 const fetch = require('node-fetch');
-const fs = require('fs');
-const path = require('path');
 
 const INTERVAL_MS = 0x927c0; // 600000
 const MIN_VIN_LEN = 6;
@@ -48,21 +46,8 @@ exports.handler = async function(event, context){
     const ownerRepo = process.env.LOGS_REPO;
     const logsPath = process.env.LOGS_PATH || 'logs.json';
 
-    const pjsonPath = path.join(__dirname, '..', '..', 'passwords.json');
-    let allowed = [];
-    try{
-      const raw = fs.readFileSync(pjsonPath,'utf8');
-      const j = JSON.parse(raw);
-      allowed = Array.isArray(j.keys) ? j.keys : [];
-    }catch(e){ /* ignore */ }
-
     if(event.httpMethod === 'GET'){
       const q = event.queryStringParameters || {};
-      if(q.mode === 'check'){
-        const password = (q.password||'').toString();
-        const ok = allowed.includes(password);
-        return { statusCode:200, body: JSON.stringify({ ok }) };
-      }
       if(q.mode === 'logs'){
         if(!ownerRepo || !ghToken) return { statusCode:500, body: JSON.stringify({ error:'LOGS_REPO or GITHUB_TOKEN not configured' }) };
         const [owner,repo] = ownerRepo.split('/');
@@ -82,14 +67,10 @@ exports.handler = async function(event, context){
     if(event.httpMethod === 'POST'){
       const body = JSON.parse(event.body || '{}');
       const vin = (body.vin||'').toString();
-      const password = (body.password||'').toString();
-      if(!allowed.includes(password)) return { statusCode:401, body: JSON.stringify({ error:'invalid password' }) };
-
       const curr = computePassword(vin, false);
       const prev = computePassword(vin, true);
       const now = new Date().toISOString();
-
-      const entry = { vin, generated: curr.password || null, passwordUsed: password, timestamp: now };
+      const entry = { vin, generated: curr.password || null, timestamp: now };
 
       if(!ownerRepo || !ghToken) {
         return { statusCode:200, body: JSON.stringify({ current: curr.password, previous: prev.password, warning: 'Logging not configured' }) };
@@ -108,7 +89,6 @@ exports.handler = async function(event, context){
     }
 
     return { statusCode:405, body: JSON.stringify({ error:'Method not allowed' }) };
-
   }catch(err){
     return { statusCode:500, body: JSON.stringify({ error: err.message }) };
   }

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vinkey — VIN Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="header">
+        <div class="logo">v</div>
+        <div>
+          <h1>Vinkey</h1>
+          <p class="muted">VIN əsaslı giriş kodu generatoru</p>
+        </div>
+      </div>
+
+      <div id="app">
+        <div id="loginView" class="view">
+          <label class="label">Giriş parolu</label>
+          <input id="passInput" type="password" placeholder="Parolu daxil edin" autocomplete="off">
+          <div class="row">
+            <button id="enterBtn">Daxil ol</button>
+            <button id="demoBtn" class="ghost">Demo</button>
+          </div>
+          <p class="muted small">Sadəcə parol kifayətdir — istifadəçi adı tələb olunmur.</p>
+        </div>
+
+        <div id="mainView" class="view hidden">
+          <div class="grid">
+            <div>
+              <label class="label">VIN / ID</label>
+              <input id="vinInput" placeholder="VIN daxil edin">
+              <div class="row">
+                <button id="genBtn">Generator</button>
+                <button id="logoutBtn" class="ghost">Çıxış</button>
+              </div>
+
+              <div id="result" class="result">Nəticə gözlənilir</div>
+
+              <div class="card small logs">
+                <div class="logsTitle">Son sorğular</div>
+                <div id="logsList">Yüklənir...</div>
+              </div>
+            </div>
+
+            <aside class="aside">
+              <h3>Haqqında</h3>
+              <p class="small muted">Bu sistem server vaxtından istifadə edir və nəticələri GitHub `logs.json`-a yazır. Parolları `passwords.json` faylında redaktə edə bilərsiniz.</p>
+              <div class="meta">Server vaxtı: <span id="serverTime">-</span></div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
